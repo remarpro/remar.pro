@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+.component-map { overflow: hidden; width: 100%; position: relative; }
+
+.component-map .map-wrap { color: rgb(0, 0, 0); padding-bottom: 60%; }
+
+.component-map[data-format="overlay"], .component-map[data-format="overlay"] .map-wrap { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; }
+
+.component-map[data-format="overlay"] .map-wrap { padding-bottom: 0px !important; }
+
+.component-map .map { position: absolute; inset: 0px; background: rgba(0, 0, 0, 0.07); }
+
+.component-map .gm-style-cc { display: none; }
+
+.component-map .gm-style div { border-width: medium !important; border-style: none !important; border-color: currentcolor !important; border-image: initial !important; }
+
+.component-map ymaps .placemark { position: relative; top: -46px; margin-left: -16px; max-width: none; max-height: none; }
+
+.lenis-scrolling .component-map { touch-action: none; pointer-events: none; }

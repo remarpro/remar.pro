@@ -1,0 +1,77 @@
+@charset "utf-8";
+
+.component-button { --bgZIndex: 0; --bgZBorder: 1; --iconMargin: 10px; --iconSize: 1rem; --textAlign: center; --justifyContent: center; --buttonWide: auto; background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; color: var(--currentColor); font: inherit; outline: inherit; display: inline-flex; position: relative; padding: var(--gapY,0) var(--gapX,0); border-radius: var(--topLeftRadius,0) var(--topRightRadius,0) var(--bottomRightRadius,0) var(--bottomLeftRadius,0); min-width: 15px; user-select: none; text-align: var(--textAlign); justify-content: var(--justifyContent); align-items: center; vertical-align: middle; max-width: 100%; word-break: normal; hyphens: none; width: var(--buttonWide,"auto") !important; }
+
+.component-button:is([data-action-target], [data-action]) { cursor: pointer; }
+
+.component-button a[data-action] { user-select: none; width: 100%; height: 100%; position: absolute; z-index: 1; cursor: pointer; }
+
+.component-button.wide { --buttonWide: 100%; }
+
+.component-button.high { height: 100% !important; }
+
+.component-button .btn-icon { min-height: min(var(--iconSize),1lh); }
+
+.component-button .btn-icon, .component-button .btn-text { transition-duration: ; transition-timing-function: ; transition-delay: ; transition-behavior: ; transition-property: color, opacity; }
+
+.component-button .btn-text { position: relative; min-height: 1lh; word-break: keep-all; overflow-wrap: normal; }
+
+.component-button .btn-text.text-gradient { background-image: ; background-position-x: ; background-position-y: ; background-size: ; background-repeat: ; background-attachment: ; background-origin: ; background-color: ; text-decoration-color: var(--currentContrast); color: transparent; -webkit-text-fill-color: transparent; background-clip: text !important; }
+
+.component-button :is(.btn-icon, .btn-text) { z-index: 2; }
+
+.component-button .btn-icon.icon-right { order: 2; }
+
+.component-button .btn-icon.icon-right + .btn-text { margin-right: var(--iconMargin); }
+
+.component-button .btn-icon.icon-left + .btn-text { margin-left: var(--iconMargin); }
+
+.component-button .in-cart-icon { position: absolute; top: 50%; left: 50%; width: 18px; opacity: 0; visibility: hidden; transform: translate3d(-50%, -50%, 0px) scale(0.6); }
+
+.component-button.animate-add-to-cart { pointer-events: none; }
+
+.component-button.animate-add-to-cart .btn-text, .component-button.animate-add-to-cart .component-icon { transition: none; opacity: 0; will-change: transform; }
+
+.component-button.animate-add-to-cart .in-cart-icon { opacity: 1; transform: translate3d(-50%, -50%, 0px) scale(1); visibility: visible; will-change: transform; transition: opacity 0.45s, visibility 0.45s, transform 0.3s cubic-bezier(0.25, 1, 0.1, 3); }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .component-button.hover { color: var(--currentColorHover,var(--currentColor)); }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .component-button.hover .btn-text.text-gradient { background: var(--currentColor); }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .component-button.hover .component-icon { color: var(--iconColorHover,var(--iconColor,var(--currentColor))); }
+
+body.adaptive-mobile .component-button { text-align: var(--textAlign_mobile,var(--textAlign)); justify-content: var(--justifyContent_mobile,var(--justifyContent)); width: var(--buttonWide_mobile,var(--buttonWide)) !important; }
+
+.component-button.submitting, .component-button.success { pointer-events: none; }
+
+.component-button.submitting .btn-text, .component-button.submitting .component-icon, .component-button.success .btn-text, .component-button.success .component-icon { opacity: 0; }
+
+.component-button.submitting .submitting-icon, .component-button.success .success-icon { display: block; opacity: 1; }
+
+.component-button .submitting-icon, .component-button .success-icon { position: absolute; width: 18px; height: 18px; top: 50%; left: 50%; margin: auto; transform: translate(-50%, -50%); display: none; opacity: 0; transition: opacity 0.3s; }
+
+.text-underline { pointer-events: none; position: absolute; left: 0px; right: 0px; transition: var(--transitionDuration) var(--transitionTiming); }
+
+.text-underline:not(.is-static) { bottom: calc(var(--hoverUnderlineBorder) * -1); height: var(--hoverUnderlineBorder); background: var(--hoverUnderlineColor); }
+
+.text-underline:not(.is-static).is-underlined { transform: translateY(4px); opacity: 0; }
+
+.text-underline:not(.is-static).is-animated { left: auto; right: 0px; width: 0px; }
+
+.text-underline:not(.is-static).is-change { opacity: 0; }
+
+.text-underline.is-static { bottom: calc(var(--underlineBorder) * -1); height: var(--underlineBorder); background: var(--underlineColor); }
+
+.text-underline.is-static.is-underlined { transform: translateY(0px); opacity: 1; }
+
+.text-underline.is-static.is-animated { left: 0px; right: auto; width: 100%; }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover-underline:hover .text-underline.is-change, body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover-underline:hover .text-underline:not(.is-static) { bottom: calc(var(--hoverUnderlineBorder) * -1); height: var(--hoverUnderlineBorder); background: var(--hoverUnderlineColor); }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover-underline:hover .text-underline:not(.is-static).is-underlined { transform: translateY(0px); opacity: 1; }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover-underline:hover .text-underline:not(.is-static).is-animated { left: 0px; right: auto; width: 100%; }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover-underline:hover .text-underline.is-static.is-underlined { transform: translateY(4px); opacity: 0; }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover-underline:hover .text-underline.is-static.is-animated { left: auto; right: 0px; width: 0px; }

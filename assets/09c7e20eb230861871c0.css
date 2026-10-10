@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+.component-logo { --logoSize: 180px; display: flex; align-items: center; justify-content: center; position: relative; height: 100%; max-width: 100%; width: var(--logoSize,100%); aspect-ratio: var(--ratio); }
+
+.component-logo a { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; }
+
+.component-logo-img { display: block; width: 100%; height: 100%; object-fit: contain; -webkit-user-drag: none; user-select: none; fill-rule: revert; }
+
+body.adaptive-mobile .component-logo { --logoSizeAdaptive: 180px; width: var(--logoSizeAdaptive,100%); }

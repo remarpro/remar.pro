@@ -1,0 +1,57 @@
+@charset "utf-8";
+
+.component-bg { position: absolute; inset: 0px 0px -1px; overflow: hidden; pointer-events: none; z-index: 0; }
+
+.component-bg .layer { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; }
+
+.component-bg .color-holder { background: var(--componentBgVideoPreview,transparent); }
+
+.component-bg .image-holder, .component-bg .preview-holder { background-repeat: no-repeat; background-size: cover; }
+
+.component-bg .image-holder { image-rendering: var(--imageRendering,auto); }
+
+.component-bg .preview-holder { transition: opacity 0.3s, visibility 0.3s; }
+
+.component-bg .video-holder { opacity: 0; display: flex; align-items: center; justify-content: center; }
+
+.component-bg .video-holder iframe, .component-bg .video-holder video { flex-shrink: 0; }
+
+.component-bg .parallax-holder + .image-holder { animation: auto ease 0s 1 normal none running none !important; }
+
+.component-bg .parallax-holder.ready + .image-holder { opacity: 0; visibility: hidden; }
+
+.component-bg .overlay { background: var(--componentBgColor,transparent); opacity: var(--componentBgOpacity,1); }
+
+.component-bg.image-loaded .preview-holder { opacity: 0; visibility: hidden; }
+
+.component-bg.video-loaded .color-holder, .component-bg.video-loaded .image-holder { opacity: 0; visibility: hidden; display: none; }
+
+.component-bg.video-loaded .video-holder { opacity: 1; }
+
+.component-bg[data-type="video"][data-effect] { clip-path: inset(0px); }
+
+.component-bg[data-type="video"][data-effect] .image-holder, .component-bg[data-type="video"][data-effect] .video-holder { position: fixed; height: max(100vh,var(--100vh)); }
+
+.component-bg[data-type="video"][data-effect="parallax"] .image-holder, .component-bg[data-type="video"][data-effect="parallax"] .video-holder { transform: translateZ(0px); will-change: transform; }
+
+.component-bg[data-type="image"][data-effect="fixed"] .image-holder { transform: none !important; transition: none !important; animation: auto ease 0s 1 normal none running none !important; will-change: unset !important; contain: none !important; }
+
+.component-bg[data-type="image"][data-effect="fixed"] .image-holder, .component-bg[data-type="image"][data-effect="fixed"] .preview-holder { background-attachment: fixed; }
+
+body:is(.is-ios, .is-osx.is-touch, .is-safari, .adaptive-mobile) .component-bg[data-effect="fixed"] { clip-path: inset(0px); }
+
+body:is(.is-ios, .is-osx.is-touch, .is-safari, .adaptive-mobile) .component-bg[data-effect="fixed"] .image-holder, body:is(.is-ios, .is-osx.is-touch, .is-safari, .adaptive-mobile) .component-bg[data-effect="fixed"] .preview-holder { position: fixed; background-attachment: scroll; left: var(--fixedOffset); width: var(--100vw); height: var(--100lvh); will-change: transform; transform: translateZ(0px); }
+
+.b_block .component-bg .overlay[data-alpha="1"] { opacity: 1 !important; }
+
+body.adaptive-mobile .component-bg[data-mobile-video-enabled="false"] .video-holder { display: none !important; }
+
+body.adaptive-mobile .component-bg[data-mobile-video-enabled="false"] .image-holder { opacity: 1; visibility: visible; display: block; }
+
+body.adaptive-mobile .component-bg[data-effect-mobile="off"] .layer { position: absolute !important; top: 0px !important; left: 0px !important; width: 100% !important; height: 100% !important; background-attachment: scroll !important; transform: none !important; will-change: auto !important; }
+
+body.adaptive-mobile .component-bg[data-effect-mobile="off"] .image-holder { opacity: 1 !important; visibility: visible !important; }
+
+body.adaptive-mobile .component-bg[data-effect-mobile="off"] .parallax-holder { display: none !important; }
+
+body.adaptive-mobile .component-bg[data-effect-mobile="off"] .overlay { --componentBgOpacity: revert !important; }

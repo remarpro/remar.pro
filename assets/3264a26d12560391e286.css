@@ -1,0 +1,57 @@
+@charset "utf-8";
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) :is(.hover-trigger-shift, .hover-trigger-scale, .hover-trigger-opacity, .bg-border, .bg-fill, .bg-fill-hover, .bg-shadow, .bg-glare-hover) { transition: color var(--transitionDuration) var(--transitionTiming,ease) var(--transitionDelay,0s),border var(--transitionDuration) var(--transitionTiming,ease) var(--transitionDelay,0s),box-shadow var(--transitionDuration) var(--transitionTiming,ease) var(--transitionDelay,0s),opacity var(--transitionDuration) var(--transitionTiming,ease) var(--transitionDelay,0s),transform var(--transitionDuration) var(--transitionTiming,ease) var(--transitionDelay,0s); }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover-trigger-fadein .element-content { opacity: var(--hoverFadeInFrom,0); transition: opacity var(--transitionDuration) var(--transitionTiming,ease); }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover-trigger-fill_circle > .bg-fill-hover { --hoverBgFromDistance: 0; display: flex; clip-path: circle(var(--hoverBgFromDistance) at var(--hoverBgFromX) var(--hoverBgFromY)); transition: clip-path var(--transitionDuration) cubic-bezier(.51,.27,.47,.74),transform var(--transitionDuration) ease; will-change: transform; }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover-trigger-fill_rectangle > .bg-fill-hover { display: flex; clip-path: inset(var(--hoverBgDistance)); transition: clip-path var(--transitionDuration) cubic-bezier(.51,.27,.47,.74),transform var(--transitionDuration) ease; will-change: transform; }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover-trigger-fill_fade > .bg-fill { transition: opacity calc(var(--transitionDuration) * .65) var(--transitionTiming,ease) 0s,transform var(--transitionDuration) ease; opacity: 1; }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover-trigger-fill_fade > .bg-fill-hover { transition: opacity calc(var(--transitionDuration) * .65) var(--transitionTiming,ease) calc(var(--transitionDuration) * .35),transform var(--transitionDuration) ease; display: flex; opacity: 0; }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover-trigger-border > .bg-border { transition: opacity calc(var(--transitionDuration) * .65) var(--transitionTiming,ease) 0s,transform var(--transitionDuration) ease; opacity: 1; }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover-trigger-border > .bg-border-hover { transition: opacity calc(var(--transitionDuration) * .65) var(--transitionTiming,ease) calc(var(--transitionDuration) * .35),transform var(--transitionDuration) ease; display: flex; opacity: 0; }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-fadein .element-content { opacity: var(--hoverFadeInTo,1); }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover > .bg-glare-hover::before { width: var(--bgGlareSize,80%); opacity: 1; }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-fill_fade > .bg-fill { opacity: 0; transition: opacity calc(var(--transitionDuration) * .65) var(--transitionTiming,ease) calc(var(--transitionDuration) * .35),transform var(--transitionDuration) ease; }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-fill_fade > .bg-fill-hover { opacity: 1; transition: opacity calc(var(--transitionDuration) * .65) var(--transitionTiming,ease) 0s,transform var(--transitionDuration) ease; }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-border > .bg-border { transition: opacity calc(var(--transitionDuration) * .65) var(--transitionTiming,ease) calc(var(--transitionDuration) * .35),transform var(--transitionDuration) ease; opacity: 0; }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-border > .bg-border-hover { transition: opacity calc(var(--transitionDuration) * .65) var(--transitionTiming,ease) 0s,transform var(--transitionDuration) ease; opacity: 1; }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-text { --currentColor: var(--currentColorHover) !important; --contrastColor: var(--contrastColorHover) !important; }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-fill_circle > .bg-fill-hover { --hoverBgFromDistance: 160%; }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-fill_rectangle { --hoverBgDistance: 0 0 0 0 round var(--topLeftRadius,0) var(--topRightRadius,0) var(--bottomRightRadius,0) var(--bottomLeftRadius,0); }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-border > .bg-border-hover.is-color { border: var(--borderWidth) solid var(--hoverBorderColor); }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-border > .bg-border-hover.is-gradient { background: var(--hoverBorderGradient); }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-shadow > .bg-shadow { box-shadow: var(--hoverBgShadow); }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-shift { transform: translateY(var(--hoverShift)); }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-shift::after, body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-shift::before { content: ""; display: block; position: absolute; width: 100%; height: max(var(--hoverShift),calc(var(--hoverShift) * -1)); }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-shift::before { bottom: 100%; }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-shift::after { top: 100%; }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-scale.scale-only-bg > .bg-border, body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-scale.scale-only-bg > .bg-border-hover, body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-scale.scale-only-bg > .bg-fill, body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-scale.scale-only-bg > .bg-fill-hover, body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-scale.scale-only-bg > .bg-glare-hover, body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-scale.scale-only-bg > .bg-shadow, body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-scale:not(.scale-only-bg) { transform: scale(var(--hoverScale)); }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-shift.hover-trigger-scale:not(.scale-only-bg) { transform: translateY(var(--hoverShift)) scale(var(--hoverScale)); }
+
+body:is(.is-view, .mode--preview, .mode--generation, .state--hide-editor) .hover.hover-trigger-opacity { opacity: var(--hoverOpacity,1); }
+
+body.mode--editor .hover-trigger-fadein:not(.editor-effects-focus) { --hoverFadeInFrom: 1 !important; }

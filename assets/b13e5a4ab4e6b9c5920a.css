@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+:root { --iconSize: 60px; --iconBorderSize: 1px; --iconBorderRadius: 15%; --transitionDuration: 0.2s; --transitionTiming: ease; }
+
+.component-icon { --iconScaling: var(--scaling,56%); position: relative; display: flex; align-items: center; justify-content: center; border-radius: 0px; overflow: hidden; width: var(--iconSize); color: var(--iconColor,var(--currentColor)); max-width: 100%; flex-shrink: 0; }
+
+.component-icon[data-action-target] { cursor: pointer; }
+
+.component-icon [data-action] { position: absolute; inset: 0px; z-index: 2; }
+
+.component-icon::after { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; display: none; content: ""; border-radius: inherit; box-sizing: border-box; z-index: 0; }
+
+.component-icon .icon-wrap { display: flex; position: relative; width: 100%; padding-bottom: 100%; z-index: 1; }
+
+.component-icon .icon { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background-size: contain; background-repeat: no-repeat; background-position: 50% center; }
+
+.component-icon .icon.hover-icon { opacity: 0; }
+
+.component-icon.style--bordered.border--medium { --iconBorderSize: 2px; }
+
+.component-icon.style--bordered.border--large { --iconBorderSize: 3px; }
+
+.component-icon.style--bordered.border--xlarge { --iconBorderSize: 5px; }
+
+.component-icon.size--xsmall { --iconSize: 26px; }
+
+.component-icon.size--small { --iconSize: 40px; }
+
+.component-icon.size--medium { --iconSize: 60px; }
+
+.component-icon.size--large { --iconSize: 80px; }
+
+.component-icon.size--custom { width: var(--iconSizeFallback,var(--iconSize)); }
+
+.component-icon.style--bordered::after, .component-icon.style--filled::after { display: block; }
+
+.component-icon.style--bordered .icon, .component-icon.style--filled .icon { width: var(--iconScaling); height: var(--iconScaling); top: calc((100% - var(--iconScaling)) / 2); left: calc((100% - var(--iconScaling)) / 2); }
+
+.component-icon.style--filled::after { background: var(--iconColor,var(--currentColor)); }
+
+.component-icon.style--filled .icon-wrap { color: var(--iconColor_contrast,var(--contrastColor)); }
+
+.component-icon.style--bordered::after { border: var(--iconBorderSize) solid var(--iconColor,var(--currentColor)); z-index: 1; }
+
+.component-icon.shape--round { border-radius: 50%; }
+
+.component-icon.shape--rounded { border-radius: var(--iconBorderRadius); }
+
+.component-icon.scale--cover .icon { top: 0px; left: 0px; width: 100%; height: 100%; background-size: cover; }
+
+.component-icon.color--dark { --currentColor: var(--darkText); --contrastColor: var(--darkText_contrast); }
+
+.component-icon.color--light { --currentColor: var(--lightText); --contrastColor: var(--lightText_contrast); }
+
+.component-icon.hover--opacity .icon-wrap, .component-icon.hover--opacity::after { transition: opacity var(--transitionDuration) var(--transitionTiming); }
+
+.component-icon.hover--opacity:hover .icon-wrap, .component-icon.hover--opacity:hover::after { opacity: 0.7; }
+
+.component-icon.hover--zoom { overflow: visible; }
+
+.component-icon.hover--zoom .icon-wrap, .component-icon.hover--zoom::after { transition: transform var(--transitionDuration) var(--transitionTiming); }
+
+.component-icon.hover--zoom:hover.style--none .icon-wrap, .component-icon.hover--zoom:hover::after { transform: scale(1.12); }
+
+.component-icon.hover--color .icon-wrap { transition: color var(--transitionDuration) var(--transitionTiming); }
+
+.component-icon.hover--color .icon { transition: opacity var(--transitionDuration) var(--transitionTiming); }
+
+.component-icon.hover--color::after { transition: color var(--transitionDuration) var(--transitionTiming),opacity var(--transitionDuration) var(--transitionTiming),background-color var(--transitionDuration) var(--transitionTiming),border-color var(--transitionDuration) var(--transitionTiming); }
+
+.component-icon.hover--color:not(.style--filled).color--gradient:hover .icon.hover-icon { opacity: 1; }
+
+.component-icon.hover--color:not(.style--filled).color--gradient:hover .icon.hover-icon + .icon { opacity: 0; }

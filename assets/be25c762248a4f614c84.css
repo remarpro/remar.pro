@@ -1,0 +1,141 @@
+@charset "utf-8";
+
+.component-socials { --socialMargin: 10px; --socialCustomColor: #969696; --socialSize: 20px; --socialHoverScale: 1.1; --socialHoverOpacity: 0.7; display: flex; flex-flow: wrap; align-items: center; justify-content: inherit; gap: var(--socialMargin); }
+
+.component-socials.position--vertical { flex-direction: column; }
+
+.component-socials.position--vertical .social-container { width: 100%; }
+
+.component-socials .social-container { display: flex; align-items: center; --iconColor: var(--socialColor); --iconContrast: var(--socialContrast); --iconColorHover: var(--socialColor); --iconContrastHover: var(--socialContrast); --iconOpacityHover: var(--socialHoverOpacity); --iconScaleHover: var(--socialHoverScale); }
+
+.component-socials .social { display: inline-flex; position: relative; color: var(--iconColor); width: 1em; height: 1em; justify-content: center; align-items: center; font-size: var(--socialSize); }
+
+.component-socials .social-icon { display: flex; position: absolute; width: 1em; height: 1em; z-index: 1; }
+
+.component-socials .social-title { margin-left: 0.6em; }
+
+.component-socials .social-container { --socialColor: var(--currentColor,var(--bgContrast)); --socialContrast: var(--contrastColor); }
+
+.component-socials.color--contrast .social-container { --iconColor: var(--currentColor); --iconContrast: var(--contrastColor); }
+
+.component-socials.color--custom .social-container { --iconColor: var(--socialCustomColor); --iconContrast: var(--socialCustomContrast); }
+
+.component-socials .twitter_x { --socialColor: #000; --socialContrast: #fff; }
+
+.component-socials .yandex_zen { --socialColor: #292929; --socialContrast: #fff; }
+
+.component-socials .instagram { --socialColor: #e1306c; --socialContrast: #fff; }
+
+.component-socials .fb { --socialColor: #1877f2; --socialContrast: #fff; }
+
+.component-socials .vk { --socialColor: #07f; --socialContrast: #fff; }
+
+.component-socials .twitter { --socialColor: #1da1f2; --socialContrast: #fff; }
+
+.component-socials .telegram { --socialColor: #29a8ea; --socialContrast: #fff; }
+
+.component-socials .ok { --socialColor: #ed812b; --socialContrast: #fff; }
+
+.component-socials .gplus { --socialColor: #dd4b39; --socialContrast: #fff; }
+
+.component-socials .skype { --socialColor: #00aff0; --socialContrast: #fff; }
+
+.component-socials .yt { --socialColor: red; --socialContrast: #fff; }
+
+.component-socials .vimeo { --socialColor: #1ab7ea; --socialContrast: #fff; }
+
+.component-socials .snapchat { --socialColor: #fffc00; --socialContrast: #000; }
+
+.component-socials .whatsapp { --socialColor: #65cf72; --socialContrast: #fff; }
+
+.component-socials .periscope { --socialColor: #3aa4c6; --socialContrast: #fff; }
+
+.component-socials .viber { --socialColor: #7360f2; --socialContrast: #fff; }
+
+.component-socials .behance { --socialColor: #1769ff; --socialContrast: #fff; }
+
+.component-socials .dribble { --socialColor: #ea4c89; --socialContrast: #fff; }
+
+.component-socials .p { --socialColor: #e60023; --socialContrast: #fff; }
+
+.component-socials .in { --socialColor: #069; --socialContrast: #fff; }
+
+.component-socials .tripadvisor { --socialColor: #34a1; --socialContrast: #fff; }
+
+.component-socials .tiktok { --socialColor: #fe2c55; --socialContrast: #fff; }
+
+.component-socials .messenger { --socialColor: #0084ff; --socialContrast: #fff; }
+
+.component-socials .discord { --socialColor: #5865f2; --socialContrast: #fff; }
+
+.component-socials .yandex_music { --socialColor: #ffd42b; --socialContrast: #000; }
+
+.component-socials .tenchat { --socialColor: #fc3234; --socialContrast: #fff; }
+
+.component-socials .apple_music { --socialColor: #fb3951; --socialContrast: #fff; }
+
+.component-socials .spotify { --socialColor: #2ebd59; --socialContrast: #fff; }
+
+.component-socials .soundcloud { --socialColor: #ff5502; --socialContrast: #fff; }
+
+.component-socials .avito { --socialColor: #00aafe; --socialContrast: #fff; }
+
+.component-socials .rutube { --socialColor: #f41240; --socialContrast: #fff; }
+
+.component-socials .cian { --socialColor: #0468ff; --socialContrast: #fff; }
+
+.component-socials .beatport { --socialColor: #01ff95; --socialContrast: #000; }
+
+.component-socials .yelp { --socialColor: #ff1c1a; --socialContrast: #fff; }
+
+.component-socials .trovo { --socialColor: #3cdb7d; --socialContrast: #000; }
+
+.component-socials .kick { --socialColor: #00e701; --socialContrast: #000; }
+
+.component-socials .boosty { --socialColor: #f15f2c; --socialContrast: #fff; }
+
+.component-socials .patreon { --socialColor: #000; --socialContrast: #fff; }
+
+.component-socials .twitch { --socialColor: #9146ff; --socialContrast: #fff; }
+
+.component-socials .max { --socialColor: #3b4aec; --socialContrast: #fff; }
+
+.component-socials .vkvideo { --socialColor: #07f; --socialContrast: #fff; }
+
+.component-socials .github { --socialColor: #000; --socialContrast: #fff; }
+
+.component-socials .social, .component-socials .social-container { transition: 0.3s cubic-bezier(0.21, 0.67, 0.58, 1); }
+
+.component-socials.hover--zoom .hover .social { transform: scale(var(--iconScaleHover,1)); }
+
+.component-socials.hover--opacity .hover { opacity: var(--iconOpacityHover,1); }
+
+.component-socials.hover--original .hover { --iconColor: var(--socialColor); --iconContrast: var(--socialContrast); }
+
+.component-socials.hover--custom_color .hover { --iconContrast: var(--socialHoverCustomContrast); --iconColor: var(--socialHoverCustomColor) !important; }
+
+.component-socials.shape--round .social::before { border-radius: 100%; }
+
+.component-socials.shape--rounded .social::before { border-radius: 0.25em; }
+
+.component-socials.size--small { --socialSize: 16px !important; }
+
+.component-socials.size--medium { --socialSize: 20px !important; }
+
+.component-socials.size--large { --socialSize: 24px !important; }
+
+.component-socials.style--bordered .social, .component-socials.style--filled .social { width: 2em; height: 2em; }
+
+.component-socials.style--bordered .social::before, .component-socials.style--filled .social::before { content: ""; display: block; box-sizing: border-box; position: absolute; width: 2em; height: 2em; left: 50%; top: 50%; margin-left: -1em; margin-top: -1em; }
+
+.component-socials.style--bordered .telegram .social-icon, .component-socials.style--filled .telegram .social-icon { font-size: 1.2em; }
+
+.component-socials.style--bordered .social::before { border-style: solid; border-width: clamp(1px, 0.08em, 5px); }
+
+.component-socials.style--filled .social::before { background: var(--iconColor); }
+
+.component-socials.style--filled .social-icon { color: var(--iconContrast); }
+
+.component-socials.style--filled.shape--round.color--original .original-icon .social-icon { font-size: 2em; color: var(--iconColor); }
+
+.component-socials.style--filled.shape--round.color--original .original-icon .social::before { display: none; }

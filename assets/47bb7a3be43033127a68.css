@@ -1,0 +1,115 @@
+@charset "utf-8";
+
+:root { --animationSlideDistance: 20px; --animationDuration: 450ms; --animationFunction: ease; }
+
+@keyframes shake { 
+  10%, 90% { transform: translate3d(-1px, 0px, 0px); }
+  20%, 80% { transform: translate3d(2px, 0px, 0px); }
+  30%, 60% { transform: translate3d(-3px, 0px, 0px); }
+  45% { transform: translate3d(3px, 0px, 0px); }
+}
+
+@keyframes slideDown { 
+  0% { transform: translateY(calc(-1 * var(--animationSlideDistance))); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes slideLeft { 
+  0% { transform: translateX(var(--animationSlideDistance)); }
+  100% { transform: translateX(0px); }
+}
+
+@keyframes slideUp { 
+  0% { transform: translateY(var(--animationSlideDistance)); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes slideRight { 
+  0% { transform: translateX(calc(-1 * var(--animationSlideDistance))); }
+  100% { transform: translateX(0px); }
+}
+
+@keyframes fadeIn { 
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeOut { 
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes zoomIn { 
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes zoomOut { 
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.15); opacity: 0; }
+}
+
+@keyframes scaleBackground { 
+  0% { transform: scale(1.02); }
+  100% { transform: translateZ(0px); }
+}
+
+@keyframes sSpin { 
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(1turn); }
+}
+
+@keyframes circularLoader { 
+  0% { stroke-dasharray: 1, 200; stroke-dashoffset: 0; }
+  50% { stroke-dasharray: 89, 200; stroke-dashoffset: -35; }
+  100% { stroke-dasharray: 89, 200; stroke-dashoffset: -124; }
+}
+
+@keyframes checkAppearance { 
+  0% { clip-path: inset(0px 100% 0px 0px); }
+  100% { clip-path: inset(0px); }
+}
+
+@keyframes placeholderBackground { 
+  0% { background-position: 200% 0px; opacity: 0.05; }
+  50% { opacity: 0.15; }
+  100% { background-position: -200% 0px; opacity: 0.05; }
+}
+
+.circle-loader { width: 25px; height: 25px; fill: none; stroke: currentcolor; stroke-width: 4px; transform-origin: center center; }
+
+.circle-loader__bg { opacity: 0.3; }
+
+.circle-loader__path { stroke-dasharray: 150, 200; stroke-dashoffset: 140; stroke-linecap: round; }
+
+.circle-loader.infinite .circle-loader__path { animation: 1.5s ease-in-out 0s infinite reverse none running circularLoader; }
+
+.b_block.wait-animation .component-bg .image-holder { opacity: 0.8; transform: scale(1.02); transition: transform 1s cubic-bezier(0.21, 0.67, 0.58, 1), opacity 0.5s cubic-bezier(0.42, 0, 0.79, 0.33); }
+
+.b_block.wait-animation .transition-target { opacity: 0; transition: none !important; }
+
+.b_block.wait-animation .layout-type-header { transform: translateY(5px); }
+
+.b_block.wait-animation:not(.was-view) .container-fluid > *, .b_block.wait-animation:not(.was-view) > * { opacity: 0; }
+
+.b_block.wait-animation:not(.was-view) .component-bg, .b_block.wait-animation:not(.was-view) .container-fluid { opacity: 1 !important; }
+
+.b_block.wait-animation:not(.was-view) .transition-target { transition: none !important; }
+
+.b_block.wait-animation.was-view .component-bg .image-holder { opacity: 1; transform: none; }
+
+.b_block.wait-animation.was-view .transition-target { transition-property: transform, opacity !important; transition-duration: 1s, 0.5s !important; transition-timing-function: cubic-bezier(0.21, 0.67, 0.58, 1) !important; transition-delay: var(--transitionDelay,0) !important; }
+
+.b_block.wait-animation.was-view .layout-type-header { transition-duration: 0.4s, 0.18s !important; }
+
+.b_block.wait-animation.was-view .transition-target { transform: none; opacity: 1; }
+
+.m_modal.animation-forwards .modal-data { animation: fadeIn var(--animationDuration) var(--animationFunction) both; }
+
+.m_modal.animation-forwards .component-bg .image-holder { animation: scaleBackground var(--animationDuration) var(--animationFunction) both; }
+
+.m_modal.animation-forwards .modal-content { animation: var(--animationName,slideUp) var(--animationDuration) var(--animationFunction) both var(--animationDirection,normal); }
+
+.m_modal.animation-backwards .modal-data { animation: fadeOut var(--animationDuration) var(--animationFunction) both; }
+
+.m_modal.animation-backwards .component-bg .image-holder { animation: scaleBackground var(--animationDuration) var(--animationFunction) both reverse; }

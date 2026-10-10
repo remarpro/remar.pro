@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+.is-screenshoter { min-height: 0px !important; }
+
+.is-screenshoter * { animation: auto ease 0s 1 normal none running none !important; transition: none !important; }
+
+.is-screenshoter .b_block { overflow: hidden; }
+
+.is-screenshoter .b_block[data-overlayed]:last-child { position: relative !important; }

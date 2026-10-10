@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+[data-page-id="2707369"][data-id="327722183"] { --indent-top: 15px; --indent-bottom: 20px; }
+
+[data-page-id="2707369"][data-id="327722183"] .header-separator { }
+
+body.adaptive-mobile [data-page-id="2707369"][data-id="327722183"] .header-wrapper { --indent-top: 5px; --indent-bottom: 6.66666667px; }
+
+[data-page-id="2707369"] [data-id="252449564"] { --elementWidth: 0px; }
+
+[data-page-id="2707369"] [data-id="295170447"] { --elementWidth: 227px; }
+
+[data-page-id="2707369"] [data-id="295170447"] .component-button { --topLeftRadius: 50px; --topRightRadius: 50px; --bottomRightRadius: 50px; --bottomLeftRadius: 50px; --bgColor: #406345; --bgShadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.08); --underlineBorder: 1px; --underlineColor: var(--currentColor); --fontSize: 16px; --lineHeight: 1.25; --letterSpacing: 0px; --fontWeight: 500; --textAlign: center; --justifyContent: center; --fontStyle: normal; --textDecoration: none; --currentContrast: var(--lightColor_contrast); --currentColor: var(--lightColor); --gapX: 22px; --gapY: 12px; --transitionDuration: 0.35s; --hoverBgColor: #5f7963; --currentColorHover: var(--lightColor); --hoverBgShadow: none; --hoverBorderColor: transparent; --hoverBorderGradient: transparent; --hoverUnderlineBorder: var(--underlineBorder); --hoverUnderlineColor: var(--underlineColor); }
+
+[data-page-id="2707369"] [data-id="722095266"] { --elementWidth: 40px; }
+
+[data-page-id="2707369"] [data-id="751327027"] { --elementWidth: 698px; }
+
+[data-page-id="2707369"] [data-id="751327027"] .component-menu { --fontSize: 16px; --lineHeight: 1.37; --letterSpacing: 0px; --fontWeight: 400; --fontStyle: normal; --textDecoration: none; --currentContrast: var(--lightColor); --currentColor: #406345; --gapX: 12px; --gapY: 6px; --textColorHover: #d0b099; --underlineSize: 1px; --underlineColorHover: var(--textColorHover); --underlineOpacityHover: 0.35; }
+
+[data-page-id="2707369"] [data-id="851147582"] { --elementWidth: 0px; }
+
+[data-page-id="2707369"] [data-id="870869847"] { --elementWidth: 174px; }
+
+[data-page-id="2707369"] [data-id="961381737"] { --elementWidth: 25px; }

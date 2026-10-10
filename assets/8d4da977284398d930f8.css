@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+@import none;
+
+body { font-family: Inter, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.5; letter-spacing: 0px; }
+
+.adaptive-mobile { font-size: inherit; font-weight: inherit; line-height: inherit; letter-spacing: inherit; }
+
+.text-style-h1 { --fontFamily: Inter,Helvetica,Arial,sans-serif; --fontSize: 72px; --fontWeight: 500; --lineHeight: 1; --letterSpacing: 0px; --textTransform: none; --fontStyle: normal; --fontSize_mobile: 40px; --fontWeight_mobile: var(--fontWeight); --lineHeight_mobile: var(--lineHeight); --letterSpacing_mobile: var(--letterSpacing); }
+
+.text-style-title { --fontFamily: Inter,Helvetica,Arial,sans-serif; --fontSize: 40px; --fontWeight: 500; --lineHeight: 1.2; --letterSpacing: 0px; --textTransform: none; --fontStyle: normal; --fontSize_mobile: 32px; --fontWeight_mobile: var(--fontWeight); --lineHeight_mobile: var(--lineHeight); --letterSpacing_mobile: var(--letterSpacing); }
+
+.text-style-h3 { --fontFamily: Inter,Helvetica,Arial,sans-serif; --fontSize: 22px; --fontWeight: 700; --lineHeight: 1.3; --letterSpacing: 0px; --textTransform: none; --fontStyle: normal; --fontSize_mobile: var(--fontSize); --fontWeight_mobile: var(--fontWeight); --lineHeight_mobile: var(--lineHeight); --letterSpacing_mobile: var(--letterSpacing); }
+
+.text-style-h4 { --fontFamily: Inter,Helvetica,Arial,sans-serif; --fontSize: 18px; --fontWeight: 700; --lineHeight: 1.5; --letterSpacing: 0px; --textTransform: none; --fontStyle: normal; --fontSize_mobile: var(--fontSize); --fontWeight_mobile: var(--fontWeight); --lineHeight_mobile: var(--lineHeight); --letterSpacing_mobile: var(--letterSpacing); }
+
+.text-style-heading-4belyy { --fontFamily: Inter,Helvetica,Arial,sans-serif; --fontSize: 18px; --fontWeight: 700; --lineHeight: 1.5; --letterSpacing: 0px; --textTransform: none; --fontStyle: normal; --fontSize_mobile: var(--fontSize); --fontWeight_mobile: var(--fontWeight); --lineHeight_mobile: var(--lineHeight); --letterSpacing_mobile: var(--letterSpacing); --currentColor: #ffffff; }
+
+.text-style-subtitle { --fontFamily: Inter,Helvetica,Arial,sans-serif; --fontSize: 18px; --fontWeight: 400; --lineHeight: 1.5; --letterSpacing: 0px; --textTransform: none; --fontStyle: normal; --fontSize_mobile: var(--fontSize); --fontWeight_mobile: var(--fontWeight); --lineHeight_mobile: var(--lineHeight); --letterSpacing_mobile: var(--letterSpacing); }
+
+.text-style-content { --fontFamily: Inter,Helvetica,Arial,sans-serif; --fontSize: 16px; --fontWeight: 400; --lineHeight: 1.5; --letterSpacing: 0px; --textTransform: none; --fontStyle: normal; --fontSize_mobile: var(--fontSize); --fontWeight_mobile: var(--fontWeight); --lineHeight_mobile: var(--lineHeight); --letterSpacing_mobile: var(--letterSpacing); }
+
+.text-style-caption { --fontFamily: Inter,Helvetica,Arial,sans-serif; --fontSize: 14px; --fontWeight: 400; --lineHeight: 1.3; --letterSpacing: 0px; --textTransform: none; --fontStyle: normal; --fontSize_mobile: var(--fontSize); --fontWeight_mobile: var(--fontWeight); --lineHeight_mobile: var(--lineHeight); --letterSpacing_mobile: var(--letterSpacing); }
+
+.font-family-h1 { --fontFamily: Inter,Helvetica,Arial,sans-serif; }
+
+.font-family-title { --fontFamily: Inter,Helvetica,Arial,sans-serif; }
+
+.font-family-h3 { --fontFamily: Inter,Helvetica,Arial,sans-serif; }
+
+.font-family-h4 { --fontFamily: Inter,Helvetica,Arial,sans-serif; }
+
+.font-family-heading-4belyy { --fontFamily: Inter,Helvetica,Arial,sans-serif; }
+
+.font-family-subtitle { --fontFamily: Inter,Helvetica,Arial,sans-serif; }
+
+.font-family-content { --fontFamily: Inter,Helvetica,Arial,sans-serif; }
+
+.font-family-caption { --fontFamily: Inter,Helvetica,Arial,sans-serif; }
