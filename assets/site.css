@@ -1,0 +1,51 @@
+/* Runtime-independent fixes for the archived Flexbe layout. */
+html { scroll-behavior: smooth; }
+body { --100vw: 100vw; --100vh: 100vh; }
+.wait-animation, .animation--slide_up .wait-animation { opacity: 1 !important; transform: none !important; }
+[data-is="block"] { scroll-margin-top: 85px; }
+:focus-visible { outline: 2px solid #406647 !important; outline-offset: 4px; }
+.component-button { cursor: pointer; }
+.static-carousel { display: flex !important; overflow-x: auto !important; scroll-snap-type: x mandatory; gap: var(--gapX, 25px); transform: none !important; height: auto !important; scrollbar-width: thin; padding-bottom: 12px; }
+.static-carousel > .flexbe-card { flex: 0 0 calc((100% - 75px)/4) !important; width: auto !important; height: auto !important; scroll-snap-align: start; visibility: visible !important; }
+.static-carousel.cards-3 > .flexbe-card { flex-basis: calc((100% - 50px)/3) !important; }
+.static-carousel.cards-3 .component-image { min-height: 200px; }
+.slider-enabled, .flexbe-cards-slider { overflow: visible; }
+.static-modal { width: min(760px, calc(100vw - 32px)); max-height: 85vh; border: 0; padding: 40px 24px 24px; border-radius: 12px; background: #fff; color: #222; }
+.static-modal::backdrop { background: #0009; }
+.static-modal .modal-content { max-width: 100%; }
+.static-modal .content-zone { width: 100%; }
+.static-close { position: absolute; right: 8px; top: 4px; background: none; border: 0; font: 30px/1.3 Arial, sans-serif; cursor: pointer; padding: 4px 12px; color: #406647; z-index: 20; }
+.static-lightbox { background: #fff; padding-top: 48px; }
+.static-lightbox img { max-width: 100%; max-height: 70vh; display: block; margin: auto; }
+.static-form-note, .static-form-status { font-size: 13px; line-height: 1.5; margin: 14px 0 0; }
+.static-map { min-height: 300px; display: flex; align-items: center; justify-content: center; background: #eee3da; padding: 30px; text-align: center; }
+.static-map a { color: #406647; text-decoration: underline; }
+.widget-mobile_menu { display: none !important; }
+.static-mobile-header { display: none; }
+@media (max-width: 800px) {
+ .static-mobile-header { display: block; background: #fff; color: #406647; position: relative; z-index: 30; }
+ .static-mobile-bar { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; }
+ .static-mobile-bar img { width: 145px; height: auto; }
+ .static-mobile-toggle { background: none; border: 1px solid #406647; border-radius: 6px; padding: 6px 10px; font: inherit; color: inherit; }
+ .static-mobile-links { padding: 8px 20px 20px; }
+ .static-mobile-links[hidden] { display: none; }
+ .static-mobile-links a { display: block; padding: 10px 0; color: inherit; }
+ header.b_block { display: none !important; }
+ .static-carousel > .flexbe-card { flex-basis: calc((100% - 25px)/2) !important; }
+ .static-carousel.cards-3 > .flexbe-card { flex-basis: 100% !important; }
+}
+@media (max-width: 480px) {
+ .static-carousel > .flexbe-card { flex-basis: 86% !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+ html { scroll-behavior: auto; }
+ *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+.spoiler-text-desc[hidden] { display: none !important; }
+
+/* Embedded map points to the street address; floor and apartment remain in contacts. */
+.static-map { display: flex; flex-direction: column; align-items: stretch; height: 380px; min-height: 380px; padding: 0; overflow: hidden; }
+.static-map iframe { display: block; width: 100%; flex: 1 1 auto; min-height: 320px; border: 0; }
+.static-map > a { display: block; flex: 0 0 auto; padding: 12px 16px; font-size: 13px; }
+@media (max-width: 800px) { .static-map { height: 340px; min-height: 340px; } .static-map iframe { min-height: 280px; } }
