@@ -83,17 +83,86 @@ document.querySelectorAll('[data-action="popup"]').forEach(anchor => {
   figure.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(); } });
 });
 document.querySelectorAll('.static-carousel').forEach(carousel => {
-  const container = carousel.closest('.flexbe-cards-slider') || carousel.parentElement;
-  container.querySelectorAll('.swiper-button-prev, .swiper-button-next').forEach(control => {
-    control.classList.remove('swiper-button-disabled'); control.removeAttribute('aria-disabled');
-    control.tabIndex = 0; control.setAttribute('role','button');
+  const slider = carousel.closest('.flexbe-cards-slider');
+  const root = carousel.closest('.flexbe-cards-root') || carousel.parentElement;
+  const controls = [...root.querySelectorAll('.swiper-button-prev, .swiper-button-next')];
+  const loop = slider?.dataset.loop === '1';
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let visible = false, interacting = false, timer;
+  const behavior = () => reduced.matches ? 'instant' : 'smooth';
+  const maximum = () => Math.max(0, carousel.scrollWidth - carousel.clientWidth);
+  function updateControls() {
+    controls.forEach(control => {
+      const previous = control.classList.contains('swiper-button-prev');
+      const disabled = maximum() < 2 || (!loop && (previous ? carousel.scrollLeft < 2 : carousel.scrollLeft >= maximum() - 2));
+      control.classList.toggle('swiper-button-disabled', disabled);
+      control.setAttribute('aria-disabled', String(disabled));
+      control.tabIndex = disabled ? -1 : 0;
+    });
+  }
+  function move(direction) {
+    const card = carousel.firstElementChild;
+    if (!card || maximum() < 2) return;
+    const step = card.getBoundingClientRect().width + parseFloat(getComputedStyle(carousel).columnGap || '0');
+    let destination = carousel.scrollLeft + direction * step;
+    if (loop && direction > 0 && carousel.scrollLeft >= maximum() - 2) destination = 0;
+    else if (loop && direction < 0 && carousel.scrollLeft < 2) destination = maximum();
+    carousel.scrollTo({left: Math.max(0, Math.min(maximum(), destination)), behavior: behavior()});
+  }
+  function schedule() {
+    clearInterval(timer);
+    const seconds = Number(slider?.dataset.autoplay);
+    if (seconds > 0 && visible && !interacting && !document.hidden && !reduced.matches) timer = setInterval(() => move(1), seconds * 1000);
+  }
+  controls.forEach(control => {
     const previous = control.classList.contains('swiper-button-prev');
-    control.setAttribute('aria-label', previous ? 'Предыдущие карточки' : 'Следующие карточки');
-    const scroll = () => carousel.scrollBy({left: (previous ? -1 : 1) * carousel.clientWidth * 0.85, behavior: 'smooth'});
-    control.addEventListener('click', scroll);
-    control.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scroll(); } });
+    control.setAttribute('role', 'button');
+    control.setAttribute('aria-label', previous ? 'Предыдущая карточка' : 'Следующая карточка');
+    const click = () => { if (control.getAttribute('aria-disabled') !== 'true') { move(previous ? -1 : 1); schedule(); } };
+    control.addEventListener('click', click);
+    control.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); click(); } });
   });
+  carousel.tabIndex = 0;
+  carousel.setAttribute('role','region');
+  carousel.setAttribute('aria-label', root.closest('section')?.querySelector('h1,h2,h3,.text-style-h2')?.textContent.trim() || 'Карточки');
+  carousel.addEventListener('keydown', e => { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); move(e.key === 'ArrowLeft' ? -1 : 1); schedule(); } });
+  // Touch uses native scrolling; mouse dragging works on images and text too.
+  let drag;
+  carousel.addEventListener('pointerdown', e => {
+    if (e.pointerType !== 'mouse' || e.button !== 0 || e.target.closest('a,button,input')) return;
+    drag = {id:e.pointerId,x:e.clientX,left:carousel.scrollLeft,moved:false};
+  });
+  carousel.addEventListener('pointermove', e => {
+    if (!drag || drag.id !== e.pointerId) return;
+    if (!drag.moved && Math.abs(e.clientX-drag.x) > 6) {
+      drag.moved = true; carousel.setPointerCapture(e.pointerId); carousel.classList.add('is-dragging');
+      interacting = true; schedule();
+    }
+    if (drag.moved) { e.preventDefault(); carousel.scrollLeft = drag.left - (e.clientX-drag.x); }
+  });
+  const endDrag = () => {
+    if (!drag) return;
+    const moved = drag.moved; drag = null; carousel.classList.remove('is-dragging');
+    if (moved) { carousel.dataset.ignoreClick = 'true'; setTimeout(() => delete carousel.dataset.ignoreClick, 0); }
+    interacting = false; schedule();
+  };
+  window.addEventListener('pointerup', endDrag); carousel.addEventListener('pointercancel', endDrag);
+  carousel.addEventListener('click', e => { if (carousel.dataset.ignoreClick) { e.preventDefault(); e.stopImmediatePropagation(); } }, true);
+  carousel.addEventListener('dragstart', e => e.preventDefault());
+  root.addEventListener('mouseenter', () => { interacting=true; schedule(); });
+  root.addEventListener('mouseleave', () => { interacting=false; schedule(); });
+  root.addEventListener('focusin', () => { interacting=true; schedule(); });
+  root.addEventListener('focusout', e => { if (!root.contains(e.relatedTarget)) { interacting=false; schedule(); } });
+  document.addEventListener('visibilitychange', schedule); reduced.addEventListener('change', schedule);
+  new IntersectionObserver(([entry]) => { visible=entry.isIntersecting; schedule(); }, {threshold:0.15}).observe(carousel);
+  carousel.addEventListener('scroll', updateControls, {passive:true});
+  function resize() {
+    carousel.style.setProperty('--visible-cards', mobile.matches ? (slider?.dataset.cardsMobile || '1') : (slider?.dataset.cards || '3'));
+    updateControls();
+  }
+  new ResizeObserver(resize).observe(carousel); mobile.addEventListener('change', resize); resize();
 });
+
 document.querySelectorAll('[data-static-form]').forEach(form => {
   form.addEventListener('submit', e => {
     e.preventDefault();
@@ -108,21 +177,23 @@ document.querySelectorAll('[data-static-form]').forEach(form => {
   });
 });
 
-// Preserved service descriptions are independent expandable sections.
+// Service headings and arrow buttons share an accessible disclosure toggle.
 document.querySelectorAll('.spoiler-list-item').forEach(item => {
   const button = item.querySelector('.spoiler-button-arrow');
+  const heading = item.querySelector('.spoiler-text-title');
   const description = item.querySelector('.spoiler-text-desc');
   if (!button || !description) return;
-  button.setAttribute('aria-label','Развернуть или свернуть описание услуги');
-  button.setAttribute('aria-expanded', item.dataset.expanded || 'true');
-  button.addEventListener('click', () => {
-    const expanded = item.dataset.expanded !== 'true';
+  const title = heading?.querySelector('h4')?.textContent.trim() || 'Описание услуги';
+  button.setAttribute('aria-label', title);
+  function setExpanded(expanded) {
     item.dataset.expanded = String(expanded);
     button.setAttribute('aria-expanded', String(expanded));
     description.setAttribute('aria-hidden', String(!expanded));
-    description.classList.toggle('collapsed--show', expanded);
     description.hidden = !expanded;
-  });
+  }
+  setExpanded(item.dataset.expanded === 'true');
+  button.addEventListener('click', () => setExpanded(description.hidden));
+  heading?.addEventListener('click', e => { if (!e.target.closest('button,a')) setExpanded(description.hidden); });
 });
 if (mobile.matches && location.hash === '#608740719') {
   requestAnimationFrame(() => document.getElementById('955316229')?.scrollIntoView());
